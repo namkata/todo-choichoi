@@ -1,0 +1,146 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #213547;
+}
+
+/* Inline comment: full-screen gradient background like screenshot */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2a2b72 0%, #3a1c71 50%, #5e2a8f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Inline comment: container that centers the white card */
+.app-bg {
+  width: 100%;
+  max-width: 1000px;
+  padding: 24px;
+}
+
+/* Inline comment: white rounded card */
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  padding: 24px;
+}
+
+.title {
+  margin: 0 0 16px;
+  color: #16325B;
+}
+
+/* Inline comment: add form styles to match screenshot */
+.add-form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.add-input, .note-input, .due-input {
+  flex: 1;
+  height: 48px;
+  border-radius: 24px;
+  border: none;
+  background: #f0f2f5;
+  padding: 0 18px;
+  font-size: 16px;
+}
+.add-button {
+  background: #ff6a55;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 0 24px;
+  height: 48px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.add-button:hover { opacity: 0.92; }
+
+/* Inline comment: list styles */
+.todo-list { display: flex; flex-direction: column; gap: 12px; }
+.todo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #d0d5dd;
+  background: #fff;
+  color: #fff;
+}
+.circle.completed {
+  background: #ff6a55;
+  color: #fff;
+  border-color: #ff6a55;
+}
+.todo-text { flex: 1; color: #1f2937; }
+.todo-title { font-size: 18px; }
+.todo-title.done { text-decoration: line-through; color: #9aa0a6; }
+.todo-note { color: #4b5563; font-size: 14px; }
+.todo-due { color: #6b7280; font-size: 13px; }
+.todo-overdue-hint { color: #dc2626; font-size: 13px; margin-top: 2px; }
+
+.delete-button {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #9aa0a6;
+  cursor: pointer;
+}
+.delete-button:hover { color: #ef4444; }
+
+/* Inline comment: highlight overdue row subtly */
+.todo-row.overdue { background: #fff3f1; border-radius: 12px; padding: 8px; }
+
+.error {
+  color: #ff4444;
+  background: #ffe6e6;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.success {
+  color: #22c55e;
+  background: #dcfce7;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.stat-item {
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.stat-item.overdue {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.loading { color: #6b7280; }

@@ -1,0 +1,224 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "REST API cho ứng dụng Todo (tạo ghi chú, thời hạn, theo dõi quá hạn)",
+        "title": "Todo Choichoi API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/api/todos": {
+            "get": {
+                "description": "Retrieve all todos ordered by created time desc",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "todos"
+                ],
+                "summary": "List todos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Todo"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new todo item with optional note and deadline",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "todos"
+                ],
+                "summary": "Create todo",
+                "parameters": [
+                    {
+                        "description": "Todo payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Todo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Todo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/todos/{id}": {
+            "put": {
+                "description": "Update a todo item by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "todos"
+                ],
+                "summary": "Update todo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Todo ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Todo payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Todo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Todo"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a todo item by id",
+                "tags": [
+                    "todos"
+                ],
+                "summary": "Delete todo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Todo ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/todos/{id}/complete": {
+            "patch": {
+                "description": "Mark a todo completed or pending",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "todos"
+                ],
+                "summary": "Toggle complete",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Todo ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Toggle payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TogglePayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Todo"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Todo": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "dueAt": {
+                    "description": "Inline: optional deadline",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Inline: UUID primary key",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "Inline: optional note",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Inline: pending|completed",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Inline: short title",
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.TogglePayload": {
+            "type": "object",
+            "properties": {
+                "completed": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}
